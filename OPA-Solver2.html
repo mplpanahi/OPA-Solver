@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="description" content="Multiple-Criteria Decision Analysis Software">
+	<meta name="keywords"
+		content="Multiple-Criteria Decision Analysis Software, Multiple Criteria Decision Making, Ordinal Priority Approach">
+	<meta name="author" content="Amin Mahmoudi">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="introjs.min.css" />
+	<link rel="stylesheet" href="font-awesome.min.css">
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="jexcel.css" type="text/css" />
+	<link rel="stylesheet" href="jsuites.css" type="text/css" />
+	<link rel="stylesheet" href="jspreadsheet.min.css" type="text/css" />
+
+</head>
+
+
+<body>
+	<div class="header" id="start_point">
+		<left><button class="button2" onclick="location.href='https://ordinalpriorityapproach.com'"> Back to OPA
+				website</button></left>
+		<center>
+			<h2 class="animate-charcter">OPA Solver Version 1.4: Multiple-Criteria Decision Analysis Software</h1>
+		</center>
+		<center>
+			<h3><a href="https://ordinalpriorityapproach.com">www.ordinalpriorityapproach.com</a></h3>
+		</center>
+	</div>
+
+	<p></p>
+	<div class="notes" class="notes"
+		data-intro="You can find the important <b>notes</b> and <b>tricks</b> regarding the software in this section."
+		data-step="1" data-title="Notes">
+		<h2>Notes:</h2>
+		<p style="color:black;font-size:15px;">- Virtual Tour of the Software: <button class="button2"
+				onclick="introJs().start()">Start the Tour</button></p>
+		<p style="color:black;font-size:15px;">- This solver can be used for individual and group decision-making
+			problems.</p>
+		<p style="color:black;font-size:15px;">- If you only need to calculate the weight of criteria (the problem has
+			not any alternative), please watch this video: <button class="button2"
+				onclick="window.open('https://ordinalpriorityapproach.com/L1.html','_blank')"> Watch</button>
+		<p style="color:black;font-size:15px;">- This version cannot support the degree of preference. Please use
+			continuous ranks (i.e., you cannot use 1, 2, 3, 5 because the ranks are not continuous)</p>
+		<p style="color:black;font-size:15px;">- The weights of the experts and criteria show their role on the final
+			decision (objective + subjective).</p>
+		<p style="color:black;font-size:15px;">- <b>Don't</b> enter <b>zero</b> value as input data into the software.
+		</p>
+	</div>
+
+	<p> </p>
+
+	<div id="marhale"
+		data-intro="Please enter your email address, number of experts, criteria, and alternatives here. You cannot go to the next step without filling this section."
+		data-step="2" data-title="Step 1">
+
+		<p> </p>
+		<div id="inputs_div">
+
+			<form method="post" autocomplete="off" name="google-sheet">
+
+				<div class="field-container">
+					<label for="problem_name">Problem name: </label>
+					<input value="Problem1" type="text" id="problem_name" name="problem_name">
+				</div>
+
+				<div class="field-container">
+					<label for="email_address">Email address: </label>
+					<div>
+						<input type="text" onfocus="emailFocused()" id="email_address" name="email_address">
+						<div id="email-error"></div>
+					</div>
+				</div>
+
+				<div class="field-container">
+					<label for="number_of_experts">Number of experts: </label>
+					<input value="5" min="1" type="number" id="number_of_experts" name="number_of_experts">
+				</div>
+
+				<div class="field-container">
+					<label for="number_of_criterias">Number of criteria: </label>
+					<input value="3" min="1" type="number" id="number_of_criterias" name="number_of_criterias">
+				</div>
+
+				<div class="field-container">
+					<label for="number_of_alternatives">Number of alternatives: </label>
+					<input value="5" min="2" type="number" id="number_of_alternatives" name="number_of_alternatives">
+				</div>
+
+		</div>
+		<button id="btn_save_inputs" onclick="func_save_inputs()" type="submit" class="button">Save inputs</button>
+
+		</form>
+
+
+	</div>
+
+
+	<p> </p>
+
+	<div class="container"
+		data-intro="The preference data regarding the experts, criteria, and alternatives should be entered here."
+		data-step="3" data-title="Step 2">
+
+
+		<div class="answer" id="spreadsheet">
+
+		</div>
+		<br><br>
+		<div align="left">
+			<div id="table-error"></div>
+			<button id="btn_calc" onclick="func_calc()" class="button"> Solve </button>
+		</div>
+	</div>
+
+	<p> </p>
+
+	<div id="marhale" style="background-color:white !important"
+		data-intro="After clicking on the <b>Solve</b>, the problem will be solved and the results will be obtained. By clicking on <b>Export results to Word</b>, you can save the results in Word software. Also, the figures can be saved easily."
+		data-step="4" data-title="Step 3">
+
+		<div>
+			<button class="button" id="btn_save_to file" onclick="saveFile()">Export results to Word</button>
+		</div>
+		<div id="sectio1">
+			<button type="button" class="collapsible">The results of the OPA</button>
+			<div class="sectio1content" id="firstSection">
+				<div class="refrence">
+					<p>Refrence:</p>
+					<p align="left">Ataei, Y., Mahmoudi, A., Feylizadeh, M. R., & Li, D. F. (2020). Ordinal Priority
+						Approach (OPA) in Multiple Attribute Decision-Making. <i>Applied Soft Computing</i>, 86, 105893.
+					</p>
+					<br>
+				</div>
+				<div class="sectio1Calculations">
+					<div id="sectio1result_div-container">
+						<div id="result_div1">
+						</div>
+					</div>
+					<div id="charts_div1" class="flex-container">
+						<div class="chartContainer">
+							<a id="sectio1download_chart_e" download="experts.jpg" href="" title="Save">
+								<img src="save.png" width="20px" />
+							</a>
+							<canvas id="sectio1chart_e"></canvas>
+						</div>
+						<div class="chartContainer">
+							<a id="sectio1download_chart_c" download="criteria.jpg" href="" title="Save">
+								<img src="save.png" width="20px" />
+							</a>
+							<canvas id="sectio1chart_c"></canvas>
+						</div>
+						<div class="chartContainer">
+							<a id="sectio1download_chart_a" download="alternatives.jpg" href="" title="Save">
+								<img src="save.png" width="20px" />
+							</a>
+							<canvas id="sectio1chart_a"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="sectio2">
+			<button type="button" class="collapsible">Confidence level measurement</button>
+			<div class="sectio1content" id="secondSection">
+				<div class="refrence">
+					<p>Refrence:</p>
+					<p align="left">Mahmoudi, A., Javed, S.A. Probabilistic Approach to Multi-Stage Supplier Evaluation:
+						Confidence Level Measurement in Ordinal Priority Approach. <i>Group Decis Negot 31</i>,
+						1051–1096 (2022). https://doi.org/10.1007/s10726-022-09790-1</p>
+				</div>
+				<div class="sectio1Calculations">
+					<div id="sectio2result_div-container">
+						<div id="result_div2">
+						</div>
+					</div>
+					<div id="charts_div2" class="flex-container">
+						<div class="section2TopChart">
+							<div class="chartContainerLeft">
+								<a id="sectio2download_chart_kendall" download="criteria.jpg" href="" title="Save">
+									<img src="save.png" width="20px" />
+								</a>
+								<canvas id="sectio2chart_kendall"></canvas>
+							</div>
+							<div class="sectio2chartContainer">
+								<a id="sectio2download_chart_c" download="criteria.jpg" href="" title="Save">
+									<img src="save.png" width="20px" />
+								</a>
+								<canvas id="sectio2chart_c"></canvas>
+							</div>
+						</div>
+						<div class="section2TopChart">
+							<div class="chartContainerLeft">
+								<a id="sectio2download_chart_local" download="alternatives.jpg" href="" title="Save">
+									<img src="save.png" width="20px" />
+								</a>
+								<canvas id="sectio2chart_local"></canvas>
+							</div>
+							<div class="sectio2chartContainer">
+								<a id="sectio2download_chart_a" download="alternatives.jpg" href="" title="Save">
+									<img src="save.png" width="20px" />
+								</a>
+								<canvas id="sectio2chart_a"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="sectio3">
+			<button type="button" class="collapsible">Interval OPA</button>
+			<div class="sectio3content" id="thirdSection">
+				<div id="sectio3result_div-container">
+					<div class="sectio3result">
+						<p>Refrence:</p>
+						<p align="left">Mahmoudi, A., Javed, S.A. Probabilistic Approach to Multi-Stage Supplier
+							Evaluation: Confidence Level Measurement in Ordinal Priority Approach. <i>Group Decis Negot
+								31</i>, 1051–1096 (2022). https://doi.org/10.1007/s10726-022-09790-1</p>
+					</div>
+
+					<div class="tableContainer">
+						<table class="tblResult" cellspacing="1" id="second_tbl" border="1">
+						</table>
+					</div>
+				</div>
+				<div id="charts_div3">
+					<div class="chartContainer">
+						<a id="sectio3download_chart_c" download="criteria.jpg" href="" title="Save">
+							<img src="save.png" width="20px" />
+						</a>
+						<canvas id="sectio3chart_c"></canvas>
+					</div>
+					<div class="chartContainer">
+						<a id="sectio3download_chart_a" download="alternatives.jpg" href="" title="Save">
+							<img src="save.png" width="20px" />
+						</a>
+						<canvas id="sectio3chart_a"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<script src="intro.min.js"></script>
+
+
+	<script type="module">
+
+		import cdf from 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists-f-cdf@esm/index.mjs';
+		(function (global) {
+
+			function get_cdf(x, y, z) {
+				return cdf(x, y, z);
+			}
+
+
+
+			global.Obj = {
+				get_cdf: get_cdf
+
+			}
+
+		})(window)
+
+	</script>
+
+	<script src="numeric.js"></script>
+	<script src="ml.js"></script>
+	<script src="sweetalert.min.js"></script>
+	<script src="chart.js"></script>
+	<script src="jexcel.js"></script>
+	<script src="jsuites.js"></script>
+	<script src="script.js"></script>
+
+	<script>
+		const scriptURL = 'https://script.google.com/macros/s/AKfycbziFihfbGhwazIhKqjoeYA8uC-9z5DfDIvLR0h_yE5Be7pF8Uh9zxPLaAUrlkFLUhHY/exec'
+		const form = document.forms['google-sheet']
+
+		form.addEventListener('submit', e => {
+			e.preventDefault()
+			fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+				.catch(error => console.error('Error!', error.message))
+		})
+	</script>
+
+	<script src="bootstrap.min.js"></script>
+	<script src="jquery.min.js"></script>
+
+
+</body>
+
+</html>
